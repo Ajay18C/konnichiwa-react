@@ -37,3 +37,23 @@
 
 ## To make app works for all browser
  - use browserslist in package.json file.
+
+
+ # Jargons
+ - Config driven Ui
+
+
+ # Export
+  - There are two types of exports 
+  - Default Export/Import
+        export default Component
+        import Component from path;
+  - Named Export/Import
+    export const Component;
+    import {Component} from path;
+
+
+# Reach Hooks
+ Normal JS utility functions
+ - useState() - Superpowerful State Variable in react
+ - useEffect()
