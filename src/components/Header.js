@@ -1,8 +1,17 @@
 import { LOGO_URL } from "../utils/constants";
-import {useState} from "react";
+import {useState,useEffect} from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   let [btnName,setBtnName] = useState("Login");
+  console.log("Header render");
+
+  // If not deps array it will be called on every render
+  // If deps array is empty  => useEffect will called only initial render and just once
+  // If deps array is [btnName] => useEffect will called every time btnName gets updated
+  useEffect(() => {
+    console.log("Use Effect Header");
+  },[btnName])
     return (
       <div className="header">
         <div className="logo-container">
@@ -13,10 +22,10 @@ const Header = () => {
         </div>
         <div className="nav-items">
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Cart</li>
+            <li><Link className="custom-link" to="/">Home</Link></li>
+            <li><Link className="custom-link" to="/about">About Us</Link></li>
+            <li><Link className="custom-link" to="/contact">Contact Us</Link></li>
+            <li><a>Cart</a></li>
             <button className="login" onClick={() => {btnName == "Login" ? setBtnName("Logout") : setBtnName("Login")}}>{btnName}</button>
           </ul>
         </div>

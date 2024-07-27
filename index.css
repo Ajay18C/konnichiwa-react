@@ -49,16 +49,39 @@
     cursor: pointer;
 }
 
-.shimmer-container{
+.shimmer-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.shimmer-card{
+.shimmer-card {
     margin: 20px;
     width: 200px;
     height: 400px;
     background-color: #f0f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
 }
 
 .login{
@@ -69,4 +92,89 @@
 .filter{
     display: flex;
     flex-wrap: wrap;
+}
+
+a {
+    color: inherit; 
+    text-decoration: none;
+}
+
+.custom-link {
+    color: #000; 
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.custom-link:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+.menu {
+    width: 100%; 
+    margin: 20px auto; /* Center the menu with some margin */
+    padding: 20px; /* Padding around the content */
+    background-color: #ffffff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-sizing: border-box;
+}
+
+.menu h1 {
+    font-size: 2.5rem; /* Larger font size for restaurant name */
+    color: #333; /* Dark text color */
+    margin-bottom: 10px; /* Space below the restaurant name */
+    text-align: center; /* Center the restaurant name */
+}
+
+.menu h3 {
+    font-size: 1.2rem; /* Slightly smaller font size for details */
+    color: #666; /* Lighter text color */
+    text-align: center; /* Center the details */
+    margin-bottom: 20px; /* Space below the details */
+}
+
+.menu h2 {
+    font-size: 2rem; /* Font size for menu title */
+    color: #444; /* Slightly darker text color */
+    margin-bottom: 20px; /* Space below the menu title */
+    border-bottom: 2px solid #ddd; /* Underline for the menu title */
+    padding-bottom: 10px; /* Space below the underline */
+}
+
+.menu ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.menu li {
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    padding: 15px 10px; /* Space around each item */
+    border-bottom: 1px solid #eee; /* Light line between items */
+    gap: 15px; /* Space between image and text */
+}
+
+.menu li:last-child {
+    border-bottom: none; /* Remove the border from the last item */
+}
+
+.menu li img {
+    width: 80px; /* Fixed width for images */
+    height: 80px; /* Fixed height for images */
+    object-fit: cover; /* Ensure image covers the area without distortion */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+.menu li .name {
+    font-size: 1.1rem; /* Font size for item names */
+    color: #333; /* Dark text color for item names */
+    flex: 1; /* Allow text to take available space */
+}
+
+.menu li .price {
+    font-size: 1rem; /* Font size for item prices */
+    color: #555; /* Slightly lighter text color for prices */
+    font-weight: bold; /* Bold text for prices */
 }
