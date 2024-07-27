@@ -2,6 +2,14 @@ import ResturantCard from "./ResturantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import resObj from '../utils/mockData'
+import { BODY_API } from "../utils/constants";
+import { Link } from "react-router-dom";
+
+//tips
+// 1. never use useState outside the function
+// 2. try to use useState only on top
+// 3. never create a useState inside a if else condition
+// 4. never create a useState inside a loop function
 
 const Body = () => {
   // Local State variable - Super powerful variable
@@ -10,10 +18,11 @@ const Body = () => {
   const [filterListOfResturant,setFilterListOfResturant] = useState([]);
 
   const fetchData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enable=true&page_type=DESKTOP_WEB_LISTING");
+    // https://corsproxy.io/?
+    const data = await fetch(BODY_API);
     const json = await data.json();
-    console.log(json);
-    console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    // console.log(json);
+    // console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilterListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
@@ -50,7 +59,9 @@ const Body = () => {
       </div>
       <div className="res-container">
         {listOfResturant.map((resturant) => (
-          <ResturantCard key={resturant.info.id} resData={resturant} />
+          <Link className="custom-link" to={'/restaurants/'+resturant.info.id} key={resturant.info.id}>
+          <ResturantCard resData={resturant} />
+          </Link>
         ))}
       </div>
     </div>
