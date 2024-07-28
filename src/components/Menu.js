@@ -1,47 +1,49 @@
 import {useEffect,useState} from 'react'
 import Shimmer from './Shimmer';
 import { useParams } from 'react-router-dom';
-import { MENU_API,CDN_URL } from '../utils/constants';
+import useMenu from '../utils/useMenu';
+import { CDN_URL } from '../utils/constants';
 
 const Menu = (props) => {
-    const [resInfo,setResInfo] = useState(null);
-    const {resId} = useParams();
-  useEffect(() => {
-    fetchMenu()
-  },[]);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API+resId);
-    const json = await data.json();
-    setResInfo(json.data);
-    console.log(resInfo);
-  }
+  const {resId} = useParams();
+  const resInfo = useMenu(resId);
+  console.log(resInfo);
 
   if(resInfo === null) return <Shimmer/>
 
   const {name, cuisines, cloudinaryImageId, costForTwoMessage} = resInfo?.cards[2]?.card?.card?.info;
   const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+  const getSymbol = (isVeg) => {
+    return isVeg ? "https://vectorified.com/images/non-veg-icon-20.png" : "https://vectorified.com/images/non-veg-icon-22.png";
+  };
 
   return  resInfo === null  ? <Shimmer/> : 
-    (<div className="menu">
-        <h1>{name}</h1>
-        <h3>{cuisines.join(", ") + " - " + costForTwoMessage}</h3>
-        <h2>Menu</h2>
-        <ul>
-            {
-            itemCards.map((x,index) => {
-                return <li key={x?.card?.info?.id}>
-                    <img src={CDN_URL+x?.card?.info?.imageId} alt={x?.card?.info?.name} />
-                    <div>
-                        <p className="name">{x?.card?.info?.name}</p>
-                        <p className="price">Rs.{x?.card?.info?.price / 100 || x?.card?.info?.defaultPrice / 100}</p>
-                    </div>
-                </li>
-            })
-            }
-        </ul>
+    <div className="menu">
+    <div className="menu-header">
+      <h1>{name}</h1>
+      <h3>{cuisines.join(", ") + " - " + costForTwoMessage}</h3>
     </div>
-  )
+    <h2>Menu</h2>
+    <ul className="menu-items">
+      {itemCards.map((x, index) => {
+        const { imageId, name, price, defaultPrice, ratings, description, isVeg } = x?.card?.info;
+        return (
+          <li key={x?.card?.info?.id} className="menu-item">
+            <img src={CDN_URL + imageId} alt={name} className="menu-item-image" />
+            <div className="menu-item-details">
+              <div className="menu-item-header">
+                <p className="menu-item-name">{name}</p>
+                <img className="menu-item-symbol" src = {getSymbol(isVeg)} />
+              </div>
+              <p className="menu-item-price">Rs.{price / 100 || defaultPrice / 100}</p>
+              {ratings && <p className="menu-item-rating">Rating: {ratings.aggregatedRating.rating}</p>}
+              {description && <p className="menu-item-description">{description}</p>}
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
 }
 
 export default Menu
