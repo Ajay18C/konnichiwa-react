@@ -111,70 +111,147 @@ a {
 }
 
 .menu {
-    width: 100%; 
-    margin: 20px auto; /* Center the menu with some margin */
-    padding: 20px; /* Padding around the content */
-    background-color: #ffffff; /* White background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    box-sizing: border-box;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .menu-header {
+    margin-bottom: 20px;
+  }
+  
+  .menu-header h1 {
+    font-size: 28px; /* Increased font size */
+    margin-bottom: 10px;
+  }
+  
+  .menu-header h3 {
+    font-size: 22px; /* Increased font size */
+    color: #666;
+  }
+  
+  .menu h2 {
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 15px;
+  }
+  
+  .menu-items {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Increased margin */
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px; /* Increased padding */
+  }
+  
+  .menu-item-image {
+    width: 100px; /* Increased width */
+    height: 100px; /* Increased height */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px; /* Increased margin */
+  }
+  
+  .menu-item-details {
+    flex-grow: 1;
+  }
+  
+  .menu-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .menu-item-name {
+    font-size: 20px; /* Increased font size */
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .menu-item-symbol {
+    width: 50px; /* Increased width */
+    height: 50px; /* Increased height */
+  }
+  
+  .menu-item-price {
+    font-size: 18px; /* Increased font size */
+    color: #888;
+  }
+  
+  .menu-item-rating {
+    font-size: 18px; /* Increased font size */
+    color: #4CAF50;
+  }
+  
+  .menu-item-description {
+    font-size: 18px; /* Increased font size */
+    color: #666;
+  }
+
+.user-card{
+    padding: 10px;
+    border: 1px solid black;
 }
 
-.menu h1 {
-    font-size: 2.5rem; /* Larger font size for restaurant name */
-    color: #333; /* Dark text color */
-    margin-bottom: 10px; /* Space below the restaurant name */
-    text-align: center; /* Center the restaurant name */
+
+.offline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #282c34;
+  color: #61dafb;
+  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-.menu h3 {
-    font-size: 1.2rem; /* Slightly smaller font size for details */
-    color: #666; /* Lighter text color */
-    text-align: center; /* Center the details */
-    margin-bottom: 20px; /* Space below the details */
+.offline-message {
+  animation: fadeIn 1s ease-in-out;
 }
 
-.menu h2 {
-    font-size: 2rem; /* Font size for menu title */
-    color: #444; /* Slightly darker text color */
-    margin-bottom: 20px; /* Space below the menu title */
-    border-bottom: 2px solid #ddd; /* Underline for the menu title */
-    padding-bottom: 10px; /* Space below the underline */
+.offline-icon {
+  margin-bottom: 1rem;
+  animation: pulse 1.5s infinite;
 }
 
-.menu ul {
-    list-style: none; /* Remove default list styling */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+.offline-icon svg {
+  width: 80px;
+  height: 80px;
 }
 
-.menu li {
-    display: flex; /* Flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    padding: 15px 10px; /* Space around each item */
-    border-bottom: 1px solid #eee; /* Light line between items */
-    gap: 15px; /* Space between image and text */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.menu li:last-child {
-    border-bottom: none; /* Remove the border from the last item */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }
 
-.menu li img {
-    width: 80px; /* Fixed width for images */
-    height: 80px; /* Fixed height for images */
-    object-fit: cover; /* Ensure image covers the area without distortion */
-    border-radius: 8px; /* Rounded corners for images */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.menu li .name {
-    font-size: 1.1rem; /* Font size for item names */
-    color: #333; /* Dark text color for item names */
-    flex: 1; /* Allow text to take available space */
-}
-
-.menu li .price {
-    font-size: 1rem; /* Font size for item prices */
-    color: #555; /* Slightly lighter text color for prices */
-    font-weight: bold; /* Bold text for prices */
+p {
+  font-size: 1.2rem;
 }

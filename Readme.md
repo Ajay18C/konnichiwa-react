@@ -62,3 +62,13 @@
  # 2 types of routing in web apps
  - Client Side Routing
  - Server Side Routing
+
+ # React lifecycle diagram
+  - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+
+ # code splitting
+  - Chunking
+  - Lazy loading
+  - Dynamic Bundling
+  - Ondemand Loading

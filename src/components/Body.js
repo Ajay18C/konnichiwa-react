@@ -4,6 +4,8 @@ import Shimmer from "./Shimmer";
 import resObj from '../utils/mockData'
 import { BODY_API } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import Offline from "./Offline";
 
 //tips
 // 1. never use useState outside the function
@@ -29,6 +31,12 @@ const Body = () => {
   useEffect(()=>{
     fetchData();
   },[]);
+
+  const onlineStatus = useOnlineStatus();
+
+  console.log("status",onlineStatus);
+
+  if(onlineStatus === false) return <Offline/>;
 
   if(listOfResturant.length === 0){
     return <Shimmer/>
