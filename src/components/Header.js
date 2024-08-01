@@ -1,4 +1,5 @@
 import { LOGO_URL } from "../utils/constants";
+import logo from '../assets/logo.png'
 import {useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -15,22 +16,22 @@ const Header = () => {
     console.log("Use Effect Header");
   },[btnName])
     return (
-      <div className="header">
+      <div className="flex justify-between bg-orange-300">
         <div className="logo-container">
           <img
-            className="logo"
-            src={LOGO_URL}
+            className="w-44"
+            src={logo}
           ></img>
         </div>
-        <div className="nav-items">
-          <ul>
-            <li>Online status: {onlineStatus ? "🟢" : "🔴"}</li>
-            <li><Link className="custom-link" to="/">Home</Link></li>
-            <li><Link className="custom-link" to="/about">About Us</Link></li>
-            <li><Link className="custom-link" to="/contact">Contact Us</Link></li>
-            <li><Link className="custom-link" to="/grocery">Grocery</Link></li>
-            <li><a>Cart</a></li>
-            <button className="login" onClick={() => {btnName == "Login" ? setBtnName("Logout") : setBtnName("Login")}}>{btnName}</button>
+        <div className="flex items-center">
+          <ul className="flex p-4 m-4">
+            <li className="px-4 mx-4 bg-orange-200 rounded-xl"> Online {onlineStatus ? "🟢" : "🔴"}</li>
+            <li className="px-4 mx-4 bg-orange-200 rounded-xl hover:bg-orange-50"><Link className="custom-link" to="/">Home</Link></li>
+            <li className="px-4 mx-4 bg-orange-200 rounded-xl hover:bg-orange-50"><Link className="custom-link" to="/about">About Us</Link></li>
+            <li className="px-4 mx-4 bg-orange-200 rounded-xl hover:bg-orange-50"><Link className="custom-link" to="/contact">Contact Us</Link></li>
+            <li className="px-4 mx-4 bg-orange-200 rounded-xl hover:bg-orange-50"><Link className="custom-link" to="/grocery">Grocery</Link></li>
+            <li className="px-4 mx-4 bg-orange-200 rounded-xl hover:bg-orange-50"><a>Cart</a></li>
+            <button className="px-4 mx-4 bg-orange-200 rounded-xl hover:bg-orange-50" onClick={() => {btnName == "Login" ? setBtnName("Logout") : setBtnName("Login")}}>{btnName}</button>
           </ul>
         </div>
       </div>

@@ -18,13 +18,14 @@ const Body = () => {
   const [listOfResturant,setListOfResturant] = useState([]);
   const [searchText,setSearchText] = useState("");
   const [filterListOfResturant,setFilterListOfResturant] = useState([]);
+  console.log(listOfResturant,"lis")
 
   const fetchData = async () => {
     // https://corsproxy.io/?
     const data = await fetch(BODY_API);
     const json = await data.json();
-    // console.log(json);
-    // console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    console.log(json);
+    console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilterListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
@@ -35,6 +36,7 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
 
   console.log("status",onlineStatus);
+
 
   if(onlineStatus === false) return <Offline/>;
 
@@ -49,23 +51,25 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="filter">
-        <div className="search">
-          <input type="text" className="search-box" value={searchText} onChange={(e) => {setSearchText(e.target.value)}}/>
-          <button onClick={() =>{
+      <div className="flex">
+        <div className="m-4 p-4">
+          <input type="text" className="border border-solid border-black" value={searchText} onChange={(e) => {setSearchText(e.target.value)}}/>
+          <button className="px-4 bg-orange-300 m-4 rounded-xl" onClick={() =>{
             setListOfResturant(filterListOfResturant.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())))
           }}>Search</button>
         </div>
+        <div className="m-4 p-4 flex items-center">
         <button
-          className="filter-btn"
+          className="px-4 bg-orange-400 m-4 rounded-xl"
           onClick={() => {
             setListOfResturant(listOfResturant.filter((x) => x.info.avgRating > 4));
           }}
         >
           Top Rated Resturants
         </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap items-stretch">
         {listOfResturant.map((resturant) => (
           <Link className="custom-link" to={'/restaurants/'+resturant.info.id} key={resturant.info.id}>
           <ResturantCard resData={resturant} />
