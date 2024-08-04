@@ -72,3 +72,16 @@
   - Lazy loading
   - Dynamic Bundling
   - Ondemand Loading
+
+  # Redux ToolKit
+   - Install @reduxjs/toolkit and react-redux
+   - Build our store
+   - connect store to app
+   - Create Slices
+   - Dispatch Action
+   - Selector
+
+  # Types of testing (developer)
+   - Unit testing
+   - Integeration testing
+   - End to End testing (e2e)
