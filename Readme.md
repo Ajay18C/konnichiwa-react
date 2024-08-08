@@ -85,3 +85,15 @@
    - Unit testing
    - Integeration testing
    - End to End testing (e2e)
+  
+  # Setting up testing in out app
+   - Install React Testing Library
+   - Install Jest
+   - Installed Babel deps
+   - Configure Babel
+   - Configure Parcel Config file to disable bable transpilation
+   - Just Configuration
+   - Install jsdom library
+   - Install @babel/preset-react to make JSX work in test
+   - Include @babel/preset-react in babel config
+   - Install @testing-library/jest-dom

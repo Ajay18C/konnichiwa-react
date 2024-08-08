@@ -6,7 +6,7 @@ const ResturantCard = (props) => {
     const {cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla} = props?.resData?.info;
     const {loggedInUser} = useContext(UserContext);
     return (
-      <div className="m-6 p-4 w-[250px] bg-orange-100 rounded-xl hover:bg-orange-300 flex flex-col flex-grow">
+      <div data-testid="resCard" className="m-6 p-4 w-[250px] bg-orange-100 rounded-xl hover:bg-orange-300 flex flex-col flex-grow">
         <img
           className="rounded-xl size-60"
           alt="res-logo"
