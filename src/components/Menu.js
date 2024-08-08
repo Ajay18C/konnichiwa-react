@@ -9,7 +9,6 @@ const Menu = (props) => {
   const {resId} = useParams();
   const resInfo = useMenu(resId);
   const [setIndex,setSetIndex] = useState(null);
-  // console.log(resInfo);
 
   if(resInfo === null) return <Shimmer/>
 

@@ -47,7 +47,7 @@ const Body = () => {
     return <Shimmer/>
   }
 
-  console.log("Body Rendered");
+  // console.log("Body Rendered");
 
   // Normal js variable
   // let listOfResturant = resObj;
@@ -56,7 +56,7 @@ const Body = () => {
     <div className="body">
       <div className="flex">
         <div className="m-4 p-4">
-          <input type="text" className="border border-solid border-black" value={searchText} onChange={(e) => {setSearchText(e.target.value)}}/>
+          <input type="text" data-testid='searchInput' className="border border-solid border-black" value={searchText} onChange={(e) => {setSearchText(e.target.value)}}/>
           <button className="px-4 bg-orange-300 m-4 rounded-xl" onClick={() =>{
             setListOfResturant(filterListOfResturant.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())))
           }}>Search</button>
